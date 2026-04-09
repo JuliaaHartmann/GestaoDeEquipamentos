@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.Security.Cryptography;
 using GestaoDeEquipamento.ConsoleApp;
 
 Equipamento?[] equipamentos = new Equipamento[100];
@@ -67,6 +67,11 @@ while (true)
         Console.WriteLine("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
+        novoEquipamento.id = Convert
+        .ToHexString(RandomNumberGenerator.GetBytes(20))
+        .ToLower()
+        .Substring(0, 7); 
+
         for (int i = 0; i < equipamentos.Length; i++)
         {
             Equipamento? e = equipamentos[i];
@@ -87,6 +92,35 @@ while (true)
 
     else if (opcaoMenu == "2")
     {
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Edição de Equipamento");
+        Console.WriteLine("---------------------------------");
+
+        Console.WriteLine(
+            "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
+            "Id", "Nome", "Fabricante", "Preço de Aquisição", "Data de Fabricação"
+        );
+
+        for (int i = 0; i < equipamentos.Length; i++)
+        {
+            Equipamento? e = equipamentos[i];
+
+            if (e == null)
+                continue;
+
+            Console.WriteLine(
+                "{0, -7} | {1, -15} | {2, -15} | {3, -22} | {4, -10}",
+                e.id, e.nome, e.fabricante, e.precoAquisicao.ToString("C2"), e.dataFabricacao.ToShortDateString()
+            );
+        }
+
+        Console.WriteLine("Digite o ID do equipamento que deseja editar: ");
+
+        Console.WriteLine("---------------------------------");
+        Console.WriteLine("Digite ENTER para continuar");
+        Console.ReadLine();
 
     }
 
