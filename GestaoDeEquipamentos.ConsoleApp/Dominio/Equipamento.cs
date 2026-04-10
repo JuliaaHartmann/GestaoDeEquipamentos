@@ -1,6 +1,4 @@
-using System;
-
-namespace GestaoDeEquipamento.ConsoleApp;
+namespace GestaoDeEquipamento.ConsoleApp.Dominio;
 
 public class Equipamento
 {
@@ -9,5 +7,4 @@ public class Equipamento
     public string fabricante;
     public decimal precoAquisicao;
     public DateTime dataFabricacao;
-
 }
