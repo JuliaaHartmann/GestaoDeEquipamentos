@@ -1,6 +1,3 @@
-
-using GestaoDeEquipamento.ConsoleApp.Dominio;
-
 namespace GestaoDeEquipamentos.ConsoleApp.Dominio;
 
 public class Chamado

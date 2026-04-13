@@ -1,5 +1,5 @@
-﻿using GestaoDeEquipamento.ConsoleApp.Dominio;
-using GestaoDeEquipamentos.ConsoleApp.Apresentacao;
+﻿﻿using GestaoDeEquipamentos.ConsoleApp.Apresentacao;
+using GestaoDeEquipamentos.ConsoleApp.Dominio;
 using GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
 
 RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
@@ -17,9 +17,24 @@ Equipamento equipamento = new Equipamento();
 equipamento.nome = "Notebook";
 equipamento.fabricante = "Acer";
 equipamento.precoAquisicao = 2000;
-equipamento.dataFabricacao = DateTime.Now;
+equipamento.dataFabricacao = DateTime.Now.AddYears(-5);
+
+Equipamento equipamento2 = new Equipamento();
+equipamento2.nome = "Monitor";
+equipamento2.fabricante = "LG";
+equipamento2.precoAquisicao = 1200;
+equipamento2.dataFabricacao = DateTime.Now.AddYears(-4);
 
 repositorioEquipamento.Cadastrar(equipamento);
+repositorioEquipamento.Cadastrar(equipamento2);
+
+Chamado chamado = new Chamado();
+chamado.titulo = "Quebrou o display";
+chamado.descricao = "Está com deadpixel";
+chamado.dataAbertura = DateTime.Now.AddDays(-7);
+chamado.equipamento = equipamento;
+
+repositorioChamado.Cadastrar(chamado);
 
 while (true)
 {
@@ -46,7 +61,7 @@ while (true)
         {
             string? opcaoMenu = telaEquipamento.ObterEscolhaMenuPrincipal();
 
-            if (opcaoMenuPrincipal == "S")
+            if (opcaoMenu == "S")
             {
                 Console.Clear();
                 break;
@@ -64,6 +79,7 @@ while (true)
             else if (opcaoMenu == "4")
                 telaEquipamento.VisualizarTodos();
         }
+
         else if (opcaoMenuPrincipal == "2")
         {
             string? opcaoMenu = telaChamado.ObterEscolhaMenuPrincipal();
@@ -84,7 +100,8 @@ while (true)
                 telaChamado.Excluir();
 
             else if (opcaoMenu == "4")
-                telaChamado.VisualizarTodos();
+                telaChamado.VisualizarTodos(deveExibirCabecalho: true);
         }
     }
+
 }

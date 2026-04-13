@@ -1,4 +1,4 @@
-using GestaoDeEquipamento.ConsoleApp.Dominio;
+using GestaoDeEquipamentos.ConsoleApp.Dominio;
 using GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Apresentacao;
@@ -6,6 +6,7 @@ namespace GestaoDeEquipamentos.ConsoleApp.Apresentacao;
 public class TelaEquipamento
 {
     public RepositorioEquipamento repositorioEquipamento;
+
     public string? ObterEscolhaMenuPrincipal()
     {
         Console.Clear();
@@ -37,7 +38,7 @@ public class TelaEquipamento
 
         do
         {
-            Console.WriteLine("Digite o nome do equipamento: ");
+            Console.Write("Digite o nome do equipamento: ");
             novoEquipamento.nome = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(novoEquipamento.nome) &&
@@ -50,29 +51,29 @@ public class TelaEquipamento
 
         do
         {
-            Console.WriteLine("Digite o fabricante do equipamento: ");
+            Console.Write("Digite o fabricante do equipamento: ");
             novoEquipamento.fabricante = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) &&
-                novoEquipamento.fabricante.Length >= 2)
+                novoEquipamento.fabricante.Length > 2)
             {
                 break;
             }
 
         } while (true);
 
-        Console.WriteLine("Digite o preço de aquisição do equipamento: ");
+        Console.Write("Digite o preço de aquisição do equipamento: ");
         novoEquipamento.precoAquisicao = Convert.ToDecimal(Console.ReadLine());
 
-        Console.WriteLine("Digite a data de fabricação do equipamento: ");
+        Console.Write("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
         repositorioEquipamento.Cadastrar(novoEquipamento);
 
         Console.WriteLine("---------------------------------");
-        Console.WriteLine($"O registro \"{novoEquipamento.id}\" foi cadastrado com sucesso!");
+        Console.WriteLine($"O registro \"{novoEquipamento.id}\" foi cadastrado com sucesso.");
         Console.WriteLine("---------------------------------");
-        Console.Write("Digite ENTER para continuar");
+        Console.WriteLine("Digite ENTER para continuar...");
         Console.ReadLine();
     }
 
@@ -111,7 +112,7 @@ public class TelaEquipamento
 
         do
         {
-            Console.WriteLine("Digite o ID do equipamento que deseja editar: ");
+            Console.Write("Digite o id do equipamento que deseja editar: ");
             idSelecionado = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
@@ -122,7 +123,7 @@ public class TelaEquipamento
 
         do
         {
-            Console.WriteLine("Digite o nome do equipamento: ");
+            Console.Write("Digite o nome do equipamento: ");
             novoEquipamento.nome = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(novoEquipamento.nome) &&
@@ -135,7 +136,7 @@ public class TelaEquipamento
 
         do
         {
-            Console.WriteLine("Digite o fabricante do equipamento: ");
+            Console.Write("Digite o fabricante do equipamento: ");
             novoEquipamento.fabricante = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(novoEquipamento.fabricante) &&
@@ -146,10 +147,10 @@ public class TelaEquipamento
 
         } while (true);
 
-        Console.WriteLine("Digite o preço de aquisição do equipamento: ");
+        Console.Write("Digite o preço de aquisição do equipamento: ");
         novoEquipamento.precoAquisicao = Convert.ToDecimal(Console.ReadLine());
 
-        Console.WriteLine("Digite a data de fabricação do equipamento: ");
+        Console.Write("Digite a data de fabricação do equipamento: ");
         novoEquipamento.dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
         bool conseguiuEditar = repositorioEquipamento.Editar(idSelecionado, novoEquipamento);
@@ -157,17 +158,17 @@ public class TelaEquipamento
         if (!conseguiuEditar)
         {
             Console.WriteLine("---------------------------------");
-            Console.WriteLine($"Não foi possível encontrar o equipamento informado!");
+            Console.WriteLine($"Não foi possível encontrar o equipamento informado.");
             Console.WriteLine("---------------------------------");
-            Console.Write("Digite ENTER para continuar");
+            Console.WriteLine("Digite ENTER para continuar...");
             Console.ReadLine();
             return;
         }
 
         Console.WriteLine("---------------------------------");
-        Console.WriteLine($"O registro \"{idSelecionado}\" foi editado com sucesso!");
+        Console.WriteLine($"O registro \"{idSelecionado}\" foi editado com sucesso.");
         Console.WriteLine("---------------------------------");
-        Console.Write("Digite ENTER para continuar");
+        Console.WriteLine("Digite ENTER para continuar...");
         Console.ReadLine();
     }
 
@@ -201,11 +202,12 @@ public class TelaEquipamento
         }
 
         Console.WriteLine("---------------------------------");
+
         string? idSelecionado;
 
         do
         {
-            Console.WriteLine("Digite o ID do equipamento que deseja excluir: ");
+            Console.Write("Digite o id do equipamento que deseja excluir: ");
             idSelecionado = Console.ReadLine();
 
             if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
@@ -217,19 +219,17 @@ public class TelaEquipamento
         if (conseguiuExcluir)
         {
             Console.WriteLine("---------------------------------");
-            Console.WriteLine($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
+            Console.WriteLine($"O registro \"{idSelecionado}\" foi excluído com sucesso.");
             Console.WriteLine("---------------------------------");
-            Console.Write("Digite ENTER para continuar");
-            Console.ReadLine();
         }
         else
         {
             Console.WriteLine("---------------------------------");
-            Console.WriteLine($"Não foi possível encontrar o registro \"{idSelecionado}\".");
+            Console.WriteLine($"Não foi possível encontar o registro \"{idSelecionado}\".");
             Console.WriteLine("---------------------------------");
         }
 
-        Console.Write("Digite ENTER para continuar");
+        Console.Write("Digite ENTER para continuar...");
         Console.ReadLine();
     }
 
@@ -239,7 +239,7 @@ public class TelaEquipamento
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Gestão de Equipamentos");
         Console.WriteLine("---------------------------------");
-        Console.WriteLine("Visualização de Equipamento");
+        Console.WriteLine("Visualização de Equipamentos");
         Console.WriteLine("---------------------------------");
 
         Console.WriteLine(
@@ -263,7 +263,7 @@ public class TelaEquipamento
         }
 
         Console.WriteLine("---------------------------------");
-        Console.Write("Digite ENTER para continuar");
+        Console.Write("Digite ENTER para continuar...");
         Console.ReadLine();
     }
 }

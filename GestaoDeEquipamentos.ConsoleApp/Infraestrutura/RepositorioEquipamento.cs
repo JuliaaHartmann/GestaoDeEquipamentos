@@ -1,6 +1,6 @@
 using System;
 using System.Security.Cryptography;
-using GestaoDeEquipamento.ConsoleApp.Dominio;
+using GestaoDeEquipamentos.ConsoleApp.Dominio;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Infraestrutura;
 
@@ -77,7 +77,6 @@ public class RepositorioEquipamento
                 equipamentoSelecionado = e;
                 break;
             }
-
         }
 
         return equipamentoSelecionado;
