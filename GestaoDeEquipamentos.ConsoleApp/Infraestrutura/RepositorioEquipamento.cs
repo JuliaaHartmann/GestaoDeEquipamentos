@@ -13,7 +13,7 @@ public class RepositorioEquipamento
         novoEquipamento.id = Convert
             .ToHexString(RandomNumberGenerator.GetBytes(20))
             .ToLower()
-            .Substring(0, 7);
+            .Substring(0, 7); // 0-255
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
