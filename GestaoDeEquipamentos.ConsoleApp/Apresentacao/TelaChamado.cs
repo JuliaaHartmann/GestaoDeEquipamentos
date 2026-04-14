@@ -43,10 +43,8 @@ public class TelaChamado
 
     public void Editar()
     {
-        // 1. Cabeçalho
         ExibirCabecalho("Edição de Chamado");
 
-        // 2. Apresentar e selecionar o chamado que deseja editar
         VisualizarTodos(deveExibirCabecalho: false);
 
         Console.WriteLine("---------------------------------");
@@ -95,10 +93,8 @@ public class TelaChamado
 
     public void Excluir()
     {
-        // 1. Apresenta o cabeçalho
         ExibirCabecalho("Exclusão de Chamado");
 
-        // 2. Apresentar e selecionar o chamado que deseja excluir
         VisualizarTodos(deveExibirCabecalho: false);
 
         Console.WriteLine("---------------------------------");
@@ -114,7 +110,6 @@ public class TelaChamado
                 break;
         } while (true);
 
-        // 3. Com o objeto encontrado, excluir através do repositório
         bool conseguiuExcluir = repositorioChamado.Excluir(idSelecionado);
 
         if (!conseguiuExcluir)
